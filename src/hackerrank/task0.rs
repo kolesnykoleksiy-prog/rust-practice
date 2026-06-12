@@ -1,16 +1,30 @@
-// https://www.hackerrank.com/challenges/simple-array-sum/problem
-fn simple_array_sum(aa: &[i32]) -> i32 {
-    let mut x: i32 = 0;
-    for a in aa {
-        x += a
+use std::io::{self, BufRead};
+
+/*
+ * Complete the 'staircase' function below.
+ *
+ * The function accepts INTEGER n as parameter.
+ */
+
+fn staircase(n: i32) {
+    for i in 1..=n {
+        let spaces = " ".repeat((n - i) as usize);
+        let hashes = "#".repeat(i as usize);
+        println!("{}{}", spaces, hashes);
     }
-    x
 }
 
-#[test]
-fn test0() {
-    let aa = vec![10, 11, 12];
-    let real = simple_array_sum(&aa);
-    let expected = 10 + 11 + 12;
-    assert_eq!(real, expected);
+fn main() {
+    let stdin = io::stdin();
+    let mut stdin_iterator = stdin.lock().lines();
+
+    let n = stdin_iterator
+        .next()
+        .unwrap()
+        .unwrap()
+        .trim()
+        .parse::<i32>()
+        .unwrap();
+
+    staircase(n);
 }
